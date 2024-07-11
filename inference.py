@@ -29,7 +29,7 @@ def load_model():
     )
 
     model = model.to(device)
-
+    # make sure to place the resnet.pth file(trained model) in the same directory of the code file.
     checkpoint = torch.load('./resnet.pth', map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
     model.eval()
@@ -50,6 +50,9 @@ def predict(image_path):
     return label_set[predicted_class], probs[0][predicted_class].item()
 
 model = load_model()
+
+# give image path here
+# example
 image_path = r'test/result_table_img_86070_0_1707342385.jpg'
 
 print(predict(image_path))
